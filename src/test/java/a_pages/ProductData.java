@@ -54,11 +54,18 @@ public class ProductData {
     }
      public void next()
      {
-         driver.findElement(By.className(element.getString("nextselectpriceoption_id"))).click();
+         driver.findElement(By.id(element.getString("nextselectpriceoption_id"))).click();
      }
     public void prev()
     {
-        driver.findElement(By.className(element.getString("preventerinsurancedata_id"))).click();
+        driver.findElement(By.id(element.getString("preventerinsurancedata_id"))).click();
     }
-
+     public void selectOption()
+     {
+         driver.findElement(By.xpath(element.getString("selectOptionSilver"))).click();
+     }
+     public void nextToSendQuote()
+     {
+         driver.findElement(By.id(element.getString("nextSendQuot"))).click();
+     }
 }

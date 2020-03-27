@@ -83,15 +83,14 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "User enter start time",
-  "keyword": "And "
+  "name": "User enter StartTime data",
+  "keyword": "When "
 });
 formatter.match({
-  "location": "b_steps.StepsAutomobile.user_enter_start_time()"
+  "location": "b_steps.StepsAutomobile.user_enter_StartTime_data()"
 });
 formatter.result({
-  "error_message": "java.lang.NullPointerException\r\n\tat b_steps.StepsAutomobile.user_enter_start_time(StepsAutomobile.java:174)\r\n\tat ✽.User enter start time(file:///C:/Users/bstojanac/Downloads/AppiumTesting/BDD/Feature/Automobile.feature:36)\r\n",
-  "status": "failed"
+  "status": "passed"
 });
 formatter.step({
   "name": "User enter following data for product data tab",
@@ -105,7 +104,7 @@ formatter.match({
   "location": "b_steps.StepsAutomobile.user_enter_following_data_for_product_data_tab(io.cucumber.datatable.DataTable)"
 });
 formatter.result({
-  "status": "skipped"
+  "status": "passed"
 });
 formatter.step({
   "name": "User enter Optional products data",
@@ -115,7 +114,7 @@ formatter.match({
   "location": "b_steps.StepsAutomobile.user_enter_Optional_products_data()"
 });
 formatter.result({
-  "status": "skipped"
+  "status": "passed"
 });
 formatter.step({
   "name": "go Select price option page",
@@ -125,6 +124,50 @@ formatter.match({
   "location": "b_steps.StepsAutomobile.go_Select_price_option_page()"
 });
 formatter.result({
-  "status": "skipped"
+  "status": "passed"
+});
+formatter.step({
+  "name": "select option",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "b_steps.StepsAutomobile.selectOption()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "go to Select quote",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "b_steps.StepsAutomobile.goToSelectQuote()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "User enter following data for Send quote",
+  "rows": [
+    {},
+    {}
+  ],
+  "keyword": "And "
+});
+formatter.match({
+  "location": "b_steps.StepsAutomobile.user_enter_following_data_for_Send_quote(io.cucumber.datatable.DataTable)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "User enter Send button",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "b_steps.StepsAutomobile.userEnterSendButton()"
+});
+formatter.result({
+  "status": "passed"
 });
 });

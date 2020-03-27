@@ -1,10 +1,7 @@
 package b_steps;
 
 import _base.CreateDriverInstance;
-import a_pages.InsurantData;
-import a_pages.MainMenu;
-import a_pages.ProductData;
-import a_pages.VehicleData;
+import a_pages.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -23,14 +20,16 @@ public class StepsAutomobile {
     InsurantData pageInsurant;
     ProductData pageProduct;
     MainMenu pageMain;
+    SendQuote pageSendQuote;
 
     WebDriver driver;
 
     CreateDriverInstance driverInstance;
 
-    LocalDate date = LocalDate.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-    String dateInput;
+
+
+
+    //String dateInput;
     //  System.out.println(date.format(formatter));
 
     //-----------------------------------------------------------Steps for EnterVehicleData----------------------------------------------------------------------------------------
@@ -129,6 +128,8 @@ public class StepsAutomobile {
         pageInsurant.firstName(firstName);
     }
 
+
+
     @When("User enter Last name {string} data")
     public void userEnterLastNameData(String lastName) {
         pageInsurant.lastName(lastName);
@@ -166,20 +167,14 @@ public class StepsAutomobile {
     }
 
 //--------------------------------------------------------------Steps product data-------------------------------------------------------------------------------------------------
-    @And("User enter start time")
-    public void user_enter_start_time() throws IOException {
 
 
-        dateInput = date.format(formatter);
-        pageProduct.startData(dateInput);
 
 
-}
    @And("User enter following data for product data tab")
     public void user_enter_following_data_for_product_data_tab(io.cucumber.datatable.DataTable dataTable) throws IOException {
-       pageProduct = new ProductData(driver);
+
         List<Map<String,String>> list = dataTable.asMaps(String.class, String.class);
-       // pageProduct.startData(list.get(0).get("StartData"));
        pageProduct.insuranceSum(list.get(0).get("InsuranceSum"));
        pageProduct.meritRating(list.get(0).get("MeritRating"));
        pageProduct.damageInsurance(list.get(0).get("DamagteInsurance"));
@@ -187,38 +182,54 @@ public class StepsAutomobile {
 
 
     }
-  /*  @When("User enter following data for product data tab")
-    public void user_enter_following_data_for_product_data_tab(io.cucumber.datatable.DataTable dataTable) {
-        // Write code here that turns the phrase above into concrete actions
-        // For automatic transformation, change DataTable to one of
-        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-        // Double, Byte, Short, Long, BigInteger or BigDecimal.
-        //
-        // For other transformations you can register a DataTableType.
-        throw new io.cucumber.java.PendingException();
-    }*/
-
+    @When("User enter StartTime data")
+    public void user_enter_StartTime_data() throws IOException {
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        pageProduct = new ProductData(driver);
+        LocalDate returnvalue = date.plusMonths(5);
+        String dateInput = returnvalue.format(formatter);
+        pageProduct.startData(dateInput);
+    }
 
     @And("User enter Optional products data")
     public void user_enter_Optional_products_data() {
         pageProduct.optionalProducts();
     }
 
-    @Then("go Select price option page")
+    @When("go Select price option page")
     public void go_Select_price_option_page() {
         pageProduct.next();
 
     }
+//-------------------------------------------------Select price option----------------------------------------------------------------
+    @And("select option")
+    public void selectOption() {
+        pageProduct.selectOption();
+    }
+
+    @Then("go to Select quote")
+    public void goToSelectQuote() {
+        pageProduct.nextToSendQuote();
+    }
 
 
+//-------------------------------------------------Send Quote---------------------------------------------------------------------------
+     @And("User enter following data for Send quote")
+     public void user_enter_following_data_for_Send_quote(io.cucumber.datatable.DataTable dataTable) throws IOException {
+        pageSendQuote = new SendQuote(driver);
+     List<Map<String,String>> list = dataTable.asMaps(String.class, String.class);
+         pageSendQuote.email(list.get(0).get("E-Mail"));
+         pageSendQuote.userName(list.get(0).get("Username"));
+         pageSendQuote.password(list.get(0).get("Password"));
+         pageSendQuote.confimPassword(list.get(0).get("Confirm Password"));
 
+}
 
-
-
-
-
-
+    @Then("User enter Send button")
+    public void userEnterSendButton() {
+        pageSendQuote.send();
+    }
 
 
 //SCENARIO OUTLINE

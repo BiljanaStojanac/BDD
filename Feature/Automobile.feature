@@ -1,6 +1,6 @@
 Feature: Enter vehicle data
 
-
+@EnterValidData
   Scenario:  Enter valid data
     Given Navigate to EnterVehicleData Page
     When User enter "Audi" data
@@ -11,14 +11,7 @@ Feature: Enter vehicle data
     When User enter ListPrice "10000" data
     When User enter AnnualMileage "10000" data
     When NextPage
-    When User enter First name "TestName" data
-    When User enter Last name "TestLastName" data
-    When User enter Date of birth "01/18/1987" data
-    When User enter country "Serbia" data
-    When User enter Zip code "21000" data
-    When User enter "Employee" data for occupation
-    When User enter Hobbies data
-    Then go to next page
+
 
 
 @Table
@@ -33,12 +26,20 @@ Feature: Enter vehicle data
           |TestName |TestLastName|01/18/1987|Serbia |21000|Employee  |
       And User enter Hobbies data
       When go to next page
-      And User enter start time
+      When User enter StartTime data
       And User enter following data for product data tab
          |InsuranceSum   |MeritRating  |DamagteInsurance|CourtesyCar|
          |3000000        |Super Bonus  |Full Coverage   |Yes        |
       And User enter Optional products data
       Then go Select price option page
+      And select option
+      Then go to Select quote
+      And User enter following data for Send quote
+        |E-Mail              |Username  |Password   |Confirm Password|
+        |test.test@gmail.com |TestName  |TestPass123|TestPass123     |
+      Then User enter Send button
+
+
 
 
 
